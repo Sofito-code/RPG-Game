@@ -4,7 +4,7 @@ namespace Habilidades.Implementacion
 {
     public class Proyectil : Habilidad
     {
-        public Proyectil(string nombre, int tiempoCD, int puntosManaReq, Sprite icono) : base(nombre, tiempoCD, puntosManaReq, icono)
+        public Proyectil(string nombre, int tiempoCD, int puntosReq, Sprite icono) : base(nombre, tiempoCD, puntosReq, icono)
         {
             
         }

@@ -10,16 +10,16 @@ namespace Habilidades.Implementacion
         private string _nombre;
         private int _tiempoCD;
         private Estado _estado;
-        private int _puntosManaReq;
+        private int _puntosReq;
         private Sprite _icono;
         private UnityEvent _cambiadoEvent;
         private GameObject _prefabUI;
 
-        public Habilidad(string nombre, int tiempoCD, int puntosManaReq, Sprite icono)
+        public Habilidad(string nombre, int tiempoCD, int puntosReq, Sprite icono = null)
         {
             _nombre = nombre;
             _tiempoCD = tiempoCD;
-            _puntosManaReq = puntosManaReq;
+            _puntosReq = puntosReq;
             _icono = icono;
             _estado = Estado.Disponible;
             _cambiadoEvent = new UnityEvent();
@@ -39,10 +39,10 @@ namespace Habilidades.Implementacion
             set => _nombre = value;
         }
 
-        public int PuntosManaReq
+        public int PuntosReq
         {
-            get => _puntosManaReq;
-            set => _puntosManaReq = value;
+            get => _puntosReq;
+            set => _puntosReq = value;
         }
 
         public Sprite Icono

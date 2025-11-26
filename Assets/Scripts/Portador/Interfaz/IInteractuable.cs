@@ -7,6 +7,6 @@ namespace Portador.Interfaces
         public Regeneracion TipoRegenMana { get; }
         public int Mana { get; }
         public void RegenerarMana(int puntosMana);
-        public void UsarMana(int puntosMana);
+        public void GastarMana(int puntosMana);
     }
 }

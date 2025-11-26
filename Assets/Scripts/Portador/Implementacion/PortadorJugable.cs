@@ -15,9 +15,10 @@ namespace Portador.Implementaciones
 
         public PortadorJugable()
         {
-            EstadistCambiadas = new UnityEvent();
             TipoRegenMana = Regeneracion.PorContacto;
             Mana = 100;
+            EstadistCambiadasEvent = new UnityEvent();
+            AsignarHabilidades();
         }
 
         public PortadorJugable(string nombre, int vida, Regeneracion tipoRegenVida,
@@ -26,31 +27,26 @@ namespace Portador.Implementaciones
         {
             TipoRegenMana = tipoRegenMana;
             Mana = mana;
-        }
-
-        private void AgregarHabilidadesBasicas(Habilidad[] habs)
-        {
-            int cont = 0;
-            Habilidad[] listaAux = new Habilidad[3];
-            foreach (Habilidad hab in habs)
-            {
-                if (cont == 3)
-                {
-                    break;
-                }
-                if (hab != null)
-                {
-                    listaAux[cont++] = hab;
-                }
-            }
-            _habilidades = listaAux;
+            EstadistCambiadasEvent = new UnityEvent();
+            AsignarHabilidades();
         }
         
-        public UnityEvent EstadistCambiadas
+        public UnityEvent EstadistCambiadasEvent
         {
             get => _estadistCambiadasEvent;
             private set => _estadistCambiadasEvent = value;
         }
+
+        private void AsignarHabilidades()
+        {
+            Proyectil hab1 = new Proyectil("Tridente", 3, 10, null);
+            DanoArea hab2 = new DanoArea("Posion arrojadiza", 5, 20, null);
+            AutoCuracion hab3 = new AutoCuracion("Manifestar", 10, 5, null);
+            _habilidades = new Habilidad[] { hab1, hab2, hab3 };
+        }
+
+        public Habilidad[] Habilidades => _habilidades;
+        
 
         public Regeneracion TipoRegenMana
         {
@@ -69,9 +65,15 @@ namespace Portador.Implementaciones
             Mana += Mathf.Clamp(puntosMana, 0, 100);
         }
 
-        public void UsarMana(int puntosMana)
+        public void GastarMana(int puntosMana)
         {
             Mana -= Mathf.Clamp(puntosMana, 0, 100);
         }
+
+        public virtual void UsarHabilidad(int indexHabilidad)
+        {
+            Habilidades[indexHabilidad].Usar();
+        }
+
     }
 }
