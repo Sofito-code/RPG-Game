@@ -17,7 +17,7 @@ namespace Monobehavior
 
         void Start()
         {
-            _agente = new Agente1("Agente1", 100, 50);
+            _agente = new Agente1("Usopp", 100, 50);
             habilidad1.TransformPadre = _refProyectil;
             habilidad3.TransformPadre = _refDañoArea;
         }
@@ -26,15 +26,15 @@ namespace Monobehavior
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (ValidarUsoHabilidad(habilidad1)) habilidad1.Usar(_agente);
+                if (ValidarUsoHabilidad(habilidad1)) UsarHabilidad(habilidad1);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                habilidad2.Usar(_agente);
+                if (ValidarUsoHabilidad(habilidad2)) UsarHabilidad(habilidad2);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                if (ValidarUsoHabilidad(habilidad3)) habilidad3.Usar(_agente);
+                if (ValidarUsoHabilidad(habilidad3)) UsarHabilidad(habilidad3);
             }
         }
 
@@ -45,6 +45,8 @@ namespace Monobehavior
          */
         private bool ValidarUsoHabilidad(Habilidad hab)
         {
+            if (hab.Estado == Habilidades.Enum.Estado.EnEspera || hab.CoroutineCD != null) return false;
+            if (hab.Equals(habilidad2)) return true;
             switch (_agente.TipoCosto)
             {
                 case TipoCosto.Vida:
@@ -62,6 +64,12 @@ namespace Monobehavior
             }
             Debug.Log("No tienes suficiente Mana/Vida");
             return false;
+        }
+
+        private void UsarHabilidad(Habilidad hab)
+        {
+            hab.Usar(_agente);
+            hab.CoroutineCD = StartCoroutine(hab.TiempoCorutinaCD());
         }
     }
 }

@@ -14,11 +14,9 @@ public class ControladorPNJ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Colision con " + other.name);
+        if(_npc.Vida == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

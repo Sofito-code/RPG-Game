@@ -2,6 +2,7 @@
 using Habilidades.Interfaz;
 using Portador.Implementaciones;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,18 +13,27 @@ namespace Habilidades.Implementacion
         [SerializeField] private string _nombre;
         [SerializeField] private int _puntosReq;
         [SerializeField] private Sprite _icono;
-        [SerializeField] private UnityEvent _cambiadoEvent;
         [SerializeField] private int _tiempoCD;
         [SerializeField] private Estado _estado;
         [SerializeField] private GameObject _prefabUI;
-        private Transform transformPadre;
+        private UnityEvent _cambiadoEvent = new UnityEvent();
+        private Transform _transformPadre;
+        private int _tiempoCDRestante = 0;
+        private Coroutine _coroutineCD;
 
+        private void OnEnable()
+        {
+            _estado = Estado.Disponible;
+            _cambiadoEvent.RemoveAllListeners();
+            _cambiadoEvent.AddListener(TiempoRestanteCD);
+        }
         public int TiempoCD => _tiempoCD;
 
+        public Coroutine CoroutineCD { get => _coroutineCD; set => _coroutineCD = value; }
         public Transform TransformPadre
         {
-            get => transformPadre;
-            set => transformPadre = value;
+            get => _transformPadre;
+            set => _transformPadre = value;
         }
         public Estado Estado
         {
@@ -69,14 +79,34 @@ namespace Habilidades.Implementacion
                 case TipoCosto.Mana:
                     portador.GastarMana(PuntosReq);
                     Debug.Log($"{portador.Nombre} ha gastado {PuntosReq} de mana y su mana ahora es {portador.Mana}");
-                    Estado = Estado.EnEspera;
+                    _estado = Estado.EnEspera;
                     break;
                 case TipoCosto.Vida:
                     portador.RecibirDano(PuntosReq);
                     Debug.Log($"{portador.Nombre} ha gastado {PuntosReq} de vida y su vida ahora es {portador.Vida}");
-                    Estado = Estado.EnEspera;
+                    _estado = Estado.EnEspera;
                     break;
             }
+            
+        }
+
+        public IEnumerator TiempoCorutinaCD()
+        {            
+            _tiempoCDRestante = _tiempoCD;
+            while (_tiempoCDRestante > 0)
+            {
+                yield return new WaitForSeconds(1);
+                _tiempoCDRestante--;
+                _cambiadoEvent.Invoke();
+            }
+            _estado = Estado.Disponible;
+            _coroutineCD = null;
+        }
+
+
+        private void TiempoRestanteCD()
+        {
+            Debug.Log($"Tiempo restante para {Nombre}: {_tiempoCDRestante} segundos");
         }
     }
 }

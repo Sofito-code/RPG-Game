@@ -18,12 +18,6 @@ public class PiedraProyectil : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (transform.position.y < -20f)
-            Destroy(gameObject);
-    }
     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
