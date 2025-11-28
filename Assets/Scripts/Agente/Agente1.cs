@@ -1,5 +1,6 @@
 ﻿using Portador.Enum;
 using Portador.Implementaciones;
+using UnityEngine;
 
 namespace Agente
 {
@@ -8,16 +9,10 @@ namespace Agente
      */
     public class Agente1: PortadorJugable
     {
-        public Agente1(string nombre, int vida, Regeneracion tipoRegenVida, int mana, Regeneracion tipoRegenMana) :
-            base(nombre, vida, tipoRegenVida, mana, tipoRegenMana)
+        public Agente1(string nombre, int vida, int mana) : base(nombre, vida, mana)
         {
-            
+            TipoCosto = TipoCosto.Vida;
         }
-        
-        public override void UsarHabilidad(int indexHabilidad)
-        {
-            base.UsarHabilidad(indexHabilidad);
-            GastarMana(Habilidades[indexHabilidad].PuntosReq);
-        }
+
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Portador.Enum;
 using Portador.Interfaces;
+using System;
 using UnityEngine;
 
 namespace Portador.Implementaciones
 {
+    
     public abstract class Portador : IDanable
     {
         private string _nombre;
@@ -13,15 +15,15 @@ namespace Portador.Implementaciones
         public Portador()
         {
             Nombre = "Portador";
-            TipoRegenVida = Regeneracion.PorContacto;
+            TipoRegenVida = Regeneracion.SinRegeneracion;
             Vida = 100;
         }
 
-        public Portador(string nombre, int vida, Regeneracion tipoRegenVida)
+        public Portador(string nombre, int vida)
         {
             Nombre = nombre;
             Vida = Mathf.Clamp(vida, 0, 100);
-            TipoRegenVida = tipoRegenVida;
+            TipoRegenVida = Regeneracion.SinRegeneracion;
         }
 
         public Regeneracion TipoRegenVida
@@ -48,7 +50,6 @@ namespace Portador.Implementaciones
             }
         } 
         
-        //TO DO: Mejorar rango admitido para los putnos de daño 
         public void RecibirDano(int puntosDano)
         {
             Vida -= Mathf.Clamp(puntosDano, 0, 100);

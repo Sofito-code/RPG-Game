@@ -1,16 +1,21 @@
-﻿using UnityEngine;
+﻿using Portador.Implementaciones;
+using UnityEngine;
 
 namespace Habilidades.Implementacion
 {
+    [CreateAssetMenu(menuName = "Habilidades/Curar")]
     public class AutoCuracion : Habilidad
     {
-        public AutoCuracion(string nombre, int tiempoCD, int puntosReq, Sprite icono) : base(nombre, tiempoCD, puntosReq, icono)
-        {
-        }
+        public int cantidadCura = 100;
 
-        public override void Usar()
+        public override void Usar(PortadorJugable portador)
         {
-            Debug.Log("Usando auto curacion");
+            if (portador.TipoCosto == TipoCosto.Mana)
+            {
+                base.Usar(portador);
+            }
+            portador.RecibirSanacion(cantidadCura);
+            Debug.Log("Vida despues de curacion: " + portador.Vida);
         }
     }
 }

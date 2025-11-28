@@ -1,4 +1,5 @@
 ﻿using Habilidades.Enum;
+using Portador.Implementaciones;
 
 namespace Habilidades.Interfaz
 {
@@ -8,6 +9,6 @@ namespace Habilidades.Interfaz
         
         public Estado Estado { get; set; }
 
-        public void Usar();
+        public void Usar(PortadorJugable portador);
     }
 }

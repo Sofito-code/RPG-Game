@@ -4,6 +4,7 @@
     {
         Instantaneo,
         PorTiempo,
-        PorContacto
+        PorContacto,
+        SinRegeneracion
     }
 }
