@@ -56943,7 +56943,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364938296045470765, guid: dbfb3c497699e794885e38e51bc5feb1, type: 3}
       propertyPath: _tipoAgente
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 364938296045470765, guid: dbfb3c497699e794885e38e51bc5feb1, type: 3}
       propertyPath: _textoAdvertencia
