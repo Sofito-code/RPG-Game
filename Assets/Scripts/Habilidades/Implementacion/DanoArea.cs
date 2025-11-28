@@ -15,7 +15,7 @@ namespace Habilidades.Implementacion
         {
             base.Usar(portador);
             Vector3 origen = TransformPadre.position;
-            float distancia = 5f;
+            float distancia = 7f;
             Quaternion rotacion = TransformPadre.rotation;
 
             Vector3 posicionFinal = origen + rotacion * Vector3.forward * distancia + new Vector3(0, 0.05f, 0);

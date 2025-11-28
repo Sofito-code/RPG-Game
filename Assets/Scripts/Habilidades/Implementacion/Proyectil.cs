@@ -10,6 +10,7 @@ namespace Habilidades.Implementacion
         [SerializeField] private GameObject prefabProyectil;
         [SerializeField] private int fuerzaLanzamiento = 10;
 
+
         public override void Usar(PortadorJugable portador)
         {
             base.Usar(portador);

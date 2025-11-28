@@ -15,6 +15,7 @@ namespace Habilidades.Implementacion
                 base.Usar(portador);
             }
             portador.RecibirSanacion(cantidadCura);
+            portador.EstadistCambiadasEvent.Invoke();
             Debug.Log("Vida despues de curacion: " + portador.Vida);
         }
     }

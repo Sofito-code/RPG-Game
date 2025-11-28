@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nombre: Curarse
   _puntosReq: 20
-  _icono: {fileID: 0}
+  _icono: {fileID: 21300000, guid: b0f443a81ef86eb4db4167bd33f60524, type: 3}
   _tiempoCD: 15
   _estado: 0
-  _prefabUI: {fileID: 0}
   cantidadCura: 25

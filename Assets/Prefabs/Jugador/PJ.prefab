@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 364938296045470765}
   - component: {fileID: 6952188965371898550}
   m_Layer: 0
-  m_Name: Agente 1
+  m_Name: PJ
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,11 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b7f73fef9e4af448110f854d6641f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tipoAgente: 1
   habilidad1: {fileID: 11400000, guid: b4883c064a5aa7f45b9c343885ffa095, type: 2}
   habilidad2: {fileID: 11400000, guid: 2ccf702a4c7f4df4f8a008fbe09104c5, type: 2}
   habilidad3: {fileID: 11400000, guid: 58f44057f9eeffe4c9e3507303ee4031, type: 2}
   "_refDa\xF1oArea": {fileID: 2088062259718122629}
   _refProyectil: {fileID: 2888577036848276076}
+  _textoAdvertencia: {fileID: 0}
 --- !u!114 &6952188965371898550
 MonoBehaviour:
   m_ObjectHideFlags: 0

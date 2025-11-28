@@ -1,4 +1,5 @@
 using Monobehavior;
+using Portador.Implementaciones;
 using System.Collections;
 using UnityEngine;
 
@@ -6,23 +7,37 @@ public class PuntoDeDano : MonoBehaviour
 {
     public int puntosDano = 10;
     Coroutine danoCoroutine;
+    private PortadorJugable agente;
     private void OnTriggerStay(Collider other)
     {
         if (danoCoroutine == null)
         {
-            if (other.CompareTag("Player") && other.GetComponent<ControladorPJ>().Agente.Vida != 0)
+            if (other.CompareTag("Player"))
             {
-                danoCoroutine = StartCoroutine(HacerDano(other));
+                agente = other.GetComponent<ControladorPJ>().Agente;
+                if (agente.Vida != 0)
+                    danoCoroutine = StartCoroutine(HacerDano());
             }
         }
     }
 
-    private IEnumerator HacerDano(Collider other)
+    private void OnTriggerExit(Collider other)
+    {
+        if (danoCoroutine != null)
+        {
+            StopCoroutine(HacerDano());
+            danoCoroutine = null;
+            agente = null;
+        }
+    }
+
+    private IEnumerator HacerDano()
     {
         if (danoCoroutine != null) yield break;
-        other.GetComponent<ControladorPJ>().Agente.RecibirDano(puntosDano);
-        Debug.Log("Vida despues de daño por punto de daño: " + other.GetComponent<ControladorPJ>().Agente.Vida);
+        agente.RecibirDano(puntosDano);
+        agente.EstadistCambiadasEvent.Invoke();
+        Debug.Log("Vida despues de daño por punto de daño: " + agente.Vida);
         yield return new WaitForSeconds(2f);
-        danoCoroutine = null;      
+        danoCoroutine = null;
     }
 }

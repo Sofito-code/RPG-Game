@@ -1,6 +1,6 @@
 ﻿using Agente;
 using Habilidades.Implementacion;
-using Portador.Enum;
+using Habilidades.Enum;
 using Portador.Implementaciones;
 using UnityEngine;
 
@@ -15,9 +15,10 @@ namespace Monobehavior
         [SerializeField] private Habilidad habilidad3;
         [SerializeField] private Transform _refDañoArea;
         [SerializeField] private Transform _refProyectil;
+        [SerializeField]private TMPro.TextMeshProUGUI _textoAdvertencia;
         private GameObject _meshPersonaje;
 
-        void Start()
+        void Awake()
         {
             _meshPersonaje = this.transform.GetChild(1).gameObject;
             if (_tipoAgente == 0)
@@ -28,7 +29,7 @@ namespace Monobehavior
             }
             else
             {
-                _agente = new Agente2("Zoro", 100, 80);
+                _agente = new Agente2("Zoro", 50, 80);
                 _meshPersonaje.transform.GetChild(4).gameObject.SetActive(true);
                 _meshPersonaje.transform.GetChild(1).gameObject.SetActive(false);
             }
@@ -54,12 +55,14 @@ namespace Monobehavior
 
         public PortadorJugable Agente { get => _agente; set => _agente = value; }
 
+        public int TipoAgente { get => _tipoAgente; }
+
         /**
          * Valida si el agente tiene los recursos necesarios para usar la habilidad
          */
         private bool ValidarUsoHabilidad(Habilidad hab)
         {
-            if (hab.Estado == Habilidades.Enum.Estado.EnEspera || hab.CoroutineCD != null) return false;
+            if (hab.Estado == Estado.EnEspera || hab.CoroutineCD != null) return false;
             if (hab.Equals(habilidad2)) return true;
             switch (_agente.TipoCosto)
             {
@@ -68,15 +71,24 @@ namespace Monobehavior
                     {
                         return true;
                     }
-                    break;
+                    else
+                    {
+                        Debug.Log("No tienes suficiente Vida");
+                        _textoAdvertencia.text = "No tienes suficiente vida";
+                    }
+                        break;
                 case TipoCosto.Mana:
                     if (_agente.Mana >= hab.PuntosReq)
                     {
                         return true;
                     }
+                    else
+                    {
+                        Debug.Log("No tienes suficiente Mana");
+                        _textoAdvertencia.text = "No tienes suficiente mana";
+                    }
                     break;
             }
-            Debug.Log("No tienes suficiente Mana/Vida");
             return false;
         }
 
@@ -84,6 +96,11 @@ namespace Monobehavior
         {
             hab.Usar(_agente);
             hab.CoroutineCD = StartCoroutine(hab.TiempoCorutinaCD());
+        }
+
+        public Habilidad[] Habilidades()
+        {
+            return new Habilidad[] { habilidad1, habilidad2, habilidad3 };
         }
     }
 }

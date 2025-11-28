@@ -15,7 +15,6 @@ namespace Habilidades.Implementacion
         [SerializeField] private Sprite _icono;
         [SerializeField] private int _tiempoCD;
         [SerializeField] private Estado _estado;
-        [SerializeField] private GameObject _prefabUI;
         private UnityEvent _cambiadoEvent = new UnityEvent();
         private Transform _transformPadre;
         private int _tiempoCDRestante = 0;
@@ -24,8 +23,8 @@ namespace Habilidades.Implementacion
         private void OnEnable()
         {
             _estado = Estado.Disponible;
+            _tiempoCDRestante = 0;
             _cambiadoEvent.RemoveAllListeners();
-            _cambiadoEvent.AddListener(TiempoRestanteCD);
         }
         public int TiempoCD => _tiempoCD;
 
@@ -65,12 +64,6 @@ namespace Habilidades.Implementacion
             set => _cambiadoEvent = value;
         }
 
-        public GameObject PrefabUI
-        {
-            get => _prefabUI;
-            set => _prefabUI = value;
-        }
-
         public virtual void Usar(PortadorJugable portador)
         {
             Debug.Log($"Agente: {portador.Nombre} Usando: {Nombre}");
@@ -87,7 +80,7 @@ namespace Habilidades.Implementacion
                     _estado = Estado.EnEspera;
                     break;
             }
-            
+            portador.EstadistCambiadasEvent.Invoke();
         }
 
         public IEnumerator TiempoCorutinaCD()
@@ -95,6 +88,7 @@ namespace Habilidades.Implementacion
             _tiempoCDRestante = _tiempoCD;
             while (_tiempoCDRestante > 0)
             {
+                _cambiadoEvent.Invoke();
                 yield return new WaitForSeconds(1);
                 _tiempoCDRestante--;
                 _cambiadoEvent.Invoke();
@@ -104,9 +98,9 @@ namespace Habilidades.Implementacion
         }
 
 
-        private void TiempoRestanteCD()
+        public int TiempoRestanteCD()
         {
-            Debug.Log($"Tiempo restante para {Nombre}: {_tiempoCDRestante} segundos");
+            return _tiempoCDRestante;
         }
     }
 }
