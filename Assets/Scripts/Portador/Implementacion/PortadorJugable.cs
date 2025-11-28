@@ -22,7 +22,7 @@ namespace Portador.Implementaciones
         public PortadorJugable(string nombre, int vida,
             int mana) : base(nombre, vida)
         {
-            TipoRegenMana = Regeneracion.SinRegeneracion;
+            TipoRegenMana = Regeneracion.PorContacto;
             Mana = mana;
             EstadistCambiadasEvent = new UnityEvent();
         }

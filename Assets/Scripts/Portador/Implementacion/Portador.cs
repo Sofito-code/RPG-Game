@@ -8,12 +8,10 @@ namespace Portador.Implementaciones
     {
         private string _nombre;
         private int _vida;
-        private Regeneracion _tipoRegenVida;
 
         public Portador()
         {
             Nombre = "Portador";
-            TipoRegenVida = Regeneracion.SinRegeneracion;
             Vida = 100;
         }
 
@@ -21,13 +19,6 @@ namespace Portador.Implementaciones
         {
             Nombre = nombre;
             Vida = Mathf.Clamp(vida, 0, 100);
-            TipoRegenVida = Regeneracion.SinRegeneracion;
-        }
-
-        public Regeneracion TipoRegenVida
-        {
-            get => _tipoRegenVida;
-            private set => _tipoRegenVida = value;
         }
 
         public int Vida

@@ -18,7 +18,7 @@ namespace Monobehavior.PuntosEntorno
                 if (other.CompareTag("Player"))
                 {
                     agente = other.GetComponent<ControladorPJ>().Agente;
-                    if (agente.Mana < 100)
+                    if (agente.Mana < 100 && agente.TipoRegenMana == Portador.Enum.Regeneracion.PorContacto)
                         curacionCoroutine = StartCoroutine(CargarMana());
                 }
             }
