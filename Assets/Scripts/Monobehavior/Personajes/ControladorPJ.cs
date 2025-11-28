@@ -9,15 +9,29 @@ namespace Monobehavior
     public class ControladorPJ : MonoBehaviour
     {
         private PortadorJugable _agente;
-        public Habilidad habilidad1;
-        public Habilidad habilidad2;
-        public Habilidad habilidad3;
+        [SerializeField] private int _tipoAgente = 0;
+        [SerializeField] private Habilidad habilidad1;
+        [SerializeField] private Habilidad habilidad2;
+        [SerializeField] private Habilidad habilidad3;
         [SerializeField] private Transform _refDañoArea;
         [SerializeField] private Transform _refProyectil;
+        private GameObject _meshPersonaje;
 
         void Start()
         {
-            _agente = new Agente1("Usopp", 100, 50);
+            _meshPersonaje = this.transform.GetChild(1).gameObject;
+            if (_tipoAgente == 0)
+            {
+                _agente = new Agente1("Usopp", 100, 50);
+                _meshPersonaje.transform.GetChild(1).gameObject.SetActive(true);
+                _meshPersonaje.transform.GetChild(4).gameObject.SetActive(false);
+            }
+            else
+            {
+                _agente = new Agente2("Zoro", 100, 80);
+                _meshPersonaje.transform.GetChild(4).gameObject.SetActive(true);
+                _meshPersonaje.transform.GetChild(1).gameObject.SetActive(false);
+            }
             habilidad1.TransformPadre = _refProyectil;
             habilidad3.TransformPadre = _refDañoArea;
         }
