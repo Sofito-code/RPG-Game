@@ -15,11 +15,8 @@ MonoBehaviour:
   _nombre: Piedra
   _puntosReq: 5
   _icono: {fileID: 0}
-  _cambiadoEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _tiempoCD: 3
-  _estado: 1
+  _estado: 0
   _prefabUI: {fileID: 0}
   dano: 5
   prefabProyectil: {fileID: 7000870331097565454, guid: c966632b0b2fd05428d0ca167aef27c5, type: 3}

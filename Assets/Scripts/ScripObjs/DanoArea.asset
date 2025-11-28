@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: DanoArea
   m_EditorClassIdentifier: 
   _nombre: Lava
-  _tiempoCD: 5
-  _estado: 0
   _puntosReq: 10
   _icono: {fileID: 0}
-  _cambiadoEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  _tiempoCD: 10
+  _estado: 0
   _prefabUI: {fileID: 0}
+  dano: 10
   prefabZonaDano: {fileID: 7714676615070738029, guid: a10e45db6592a034fa924774130a6492, type: 3}

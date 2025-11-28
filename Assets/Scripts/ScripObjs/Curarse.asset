@@ -15,10 +15,7 @@ MonoBehaviour:
   _nombre: Curarse
   _puntosReq: 20
   _icono: {fileID: 0}
-  _cambiadoEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _tiempoCD: 10
+  _tiempoCD: 15
   _estado: 0
   _prefabUI: {fileID: 0}
   cantidadCura: 25
