@@ -11,12 +11,12 @@ namespace Habilidades.Implementacion
     public abstract class Habilidad : ScriptableObject, IUsable
     {
         [SerializeField] private string _nombre;
-        [SerializeField] private int _puntosReq;
-        [SerializeField] private Sprite _icono;
         [SerializeField] private int _tiempoCD;
         [SerializeField] private Estado _estado;
+        [SerializeField] private int _puntosReq;
+        [SerializeField] private Sprite _icono;
         private UnityEvent _cambiadoEvent = new UnityEvent();
-        private Transform _transformPadre;
+        private Transform _puntoPartida;
         private int _tiempoCDRestante = 0;
         private Coroutine _coroutineCD;
 
@@ -29,10 +29,10 @@ namespace Habilidades.Implementacion
         public int TiempoCD => _tiempoCD;
 
         public Coroutine CoroutineCD { get => _coroutineCD; set => _coroutineCD = value; }
-        public Transform TransformPadre
+        public Transform PuntoPartida
         {
-            get => _transformPadre;
-            set => _transformPadre = value;
+            get => _puntoPartida;
+            set => _puntoPartida = value;
         }
         public Estado Estado
         {

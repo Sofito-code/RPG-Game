@@ -12,9 +12,9 @@ namespace Habilidades.Implementacion
         public override void Usar(PortadorJugable portador)
         {
             base.Usar(portador);
-            Vector3 origen = TransformPadre.position;
+            Vector3 origen = PuntoPartida.position;
             float distancia = 7f;
-            Quaternion rotacion = TransformPadre.rotation;
+            Quaternion rotacion = PuntoPartida.rotation;
 
             Vector3 posicionFinal = origen + rotacion * Vector3.forward * distancia + new Vector3(0, 0.05f, 0);
 

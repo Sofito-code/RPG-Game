@@ -14,11 +14,11 @@ namespace Habilidades.Implementacion
         public override void Usar(PortadorJugable portador)
         {
             base.Usar(portador);
-            Vector3 origen = TransformPadre.position;
+            Vector3 origen = PuntoPartida.position;
             GameObject piedra = Instantiate(prefabProyectil, origen, Quaternion.identity);
             Rigidbody rb = piedra.GetComponent<PiedraProyectil>().RBody;
             piedra.GetComponent<PiedraProyectil>().Dano = dano;
-            Vector3 direccion = TransformPadre.rotation * Vector3.forward;
+            Vector3 direccion = PuntoPartida.rotation * Vector3.forward;
             rb.AddForce(direccion.normalized * fuerzaLanzamiento, ForceMode.Impulse);
             //(rotación en vuelo)
             rb.AddTorque(Vector3.up * 5f + Vector3.right * 2f, ForceMode.Impulse);

@@ -4,6 +4,7 @@ using Habilidades.Enum;
 using Portador.Implementaciones;
 using UnityEngine;
 using Portador.Enum;
+using TMPro;
 
 namespace Monobehavior.Personajes
 {
@@ -16,7 +17,7 @@ namespace Monobehavior.Personajes
         [SerializeField] private Habilidad habilidad3;
         [SerializeField] private Transform _refDañoArea;
         [SerializeField] private Transform _refProyectil;
-        [SerializeField] private TMPro.TextMeshProUGUI _textoAdvertencia;
+        [SerializeField] private TextMeshProUGUI _textoAdvertencia;
         private GameObject _meshPersonaje;
 
         void Awake()
@@ -34,8 +35,8 @@ namespace Monobehavior.Personajes
                 _meshPersonaje.transform.GetChild(4).gameObject.SetActive(true);
                 _meshPersonaje.transform.GetChild(1).gameObject.SetActive(false);
             }
-            habilidad1.TransformPadre = _refProyectil;
-            habilidad3.TransformPadre = _refDañoArea;
+            habilidad1.PuntoPartida = _refProyectil;
+            habilidad3.PuntoPartida = _refDañoArea;
         }
 
         void Update()
