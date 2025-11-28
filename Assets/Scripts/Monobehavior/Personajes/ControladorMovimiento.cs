@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Monobehavior
+namespace Monobehavior.Personajes
 {
     public class ControladorMovimiento : MonoBehaviour
     {
@@ -26,8 +26,8 @@ namespace Monobehavior
 
         void FixedUpdate()
         {
-            float x = Input.GetAxisRaw("Horizontal");  
-            float z = Input.GetAxisRaw("Vertical");  
+            float x = Input.GetAxisRaw("Horizontal");
+            float z = Input.GetAxisRaw("Vertical");
             Vector3 move = (transform.right * x + transform.forward * z).normalized * velMovimiento;
             rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
         }

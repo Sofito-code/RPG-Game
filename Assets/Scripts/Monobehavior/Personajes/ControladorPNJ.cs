@@ -1,22 +1,26 @@
 using Portador.Implementaciones;
 using UnityEngine;
 
-public class ControladorPNJ : MonoBehaviour
+namespace Monobehavior.Personajes
 {
-    private PortadorNoJugable _npc;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public PortadorNoJugable NPC { get => _npc; set => _npc = value; }
-    void Start()
+    public class ControladorPNJ : MonoBehaviour
     {
-        _npc = new PortadorNoJugable("NPC1", 100);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(_npc.Vida == 0)
+        private PortadorNoJugable _npc;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        public PortadorNoJugable NPC { get => _npc; set => _npc = value; }
+        void Start()
         {
-            Destroy(gameObject);
+            _npc = new PortadorNoJugable("NPC1", 100);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (_npc.Vida == 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
+

@@ -1,7 +1,11 @@
 using UnityEngine;
 
-public enum TipoCosto
+namespace Portador.Enum
 {
-    Vida,
-    Mana
+    public enum TipoCosto
+    {
+        Vida,
+        Mana
+    }
 }
+

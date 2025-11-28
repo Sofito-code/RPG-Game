@@ -1,46 +1,47 @@
-using Monobehavior;
+using Monobehavior.Personajes;
 using Portador.Implementaciones;
 using System.Collections;
 using UnityEngine;
 
-public class PuntoCargaMana : MonoBehaviour
+namespace Monobehavior.PuntosEntorno
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public int puntosDano = 10;
-    Coroutine curacionCoroutine;
-    private PortadorJugable agente;
-    private void OnTriggerStay(Collider other)
+    public class PuntoCargaMana : MonoBehaviour
     {
-        if (curacionCoroutine == null)
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        public int puntosDano = 10;
+        Coroutine curacionCoroutine;
+        private PortadorJugable agente;
+        private void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (curacionCoroutine == null)
             {
-                agente = other.GetComponent<ControladorPJ>().Agente;
-                if (agente.Mana < 100)
-                    curacionCoroutine = StartCoroutine(CargarMana());
-
+                if (other.CompareTag("Player"))
+                {
+                    agente = other.GetComponent<ControladorPJ>().Agente;
+                    if (agente.Mana < 100)
+                        curacionCoroutine = StartCoroutine(CargarMana());
+                }
             }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (curacionCoroutine != null)
+        private void OnTriggerExit(Collider other)
         {
-            StopCoroutine(CargarMana());
-            curacionCoroutine = null;
-            agente = null;
+            if (curacionCoroutine != null)
+            {
+                StopCoroutine(CargarMana());
+                curacionCoroutine = null;
+                agente = null;
+            }
         }
 
-    }
-
-    private IEnumerator CargarMana()
-    {
-        if (curacionCoroutine != null) yield break;
-        agente.RegenerarMana(10);
-        agente.EstadistCambiadasEvent.Invoke();
-        Debug.Log("Mana Recargado: " + agente.Mana);
-        yield return new WaitForSeconds(2f);
-        curacionCoroutine = null;
+        private IEnumerator CargarMana()
+        {
+            if (curacionCoroutine != null) yield break;
+            agente.RegenerarMana(10);
+            agente.EstadistCambiadasEvent.Invoke();
+            Debug.Log("Mana Recargado: " + agente.Mana);
+            yield return new WaitForSeconds(2f);
+            curacionCoroutine = null;
+        }
     }
 }

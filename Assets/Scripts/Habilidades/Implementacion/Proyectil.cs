@@ -1,4 +1,5 @@
-﻿using Portador.Implementaciones;
+﻿using Monobehavior.Personajes.Ataques;
+using Portador.Implementaciones;
 using UnityEngine;
 
 namespace Habilidades.Implementacion
@@ -9,7 +10,6 @@ namespace Habilidades.Implementacion
         [SerializeField] private int dano = 6;
         [SerializeField] private GameObject prefabProyectil;
         [SerializeField] private int fuerzaLanzamiento = 10;
-
 
         public override void Usar(PortadorJugable portador)
         {

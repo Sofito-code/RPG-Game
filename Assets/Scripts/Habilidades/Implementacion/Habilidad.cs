@@ -1,7 +1,7 @@
 ﻿using Habilidades.Enum;
 using Habilidades.Interfaz;
+using Portador.Enum;
 using Portador.Implementaciones;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -84,7 +84,7 @@ namespace Habilidades.Implementacion
         }
 
         public IEnumerator TiempoCorutinaCD()
-        {            
+        {
             _tiempoCDRestante = _tiempoCD;
             while (_tiempoCDRestante > 0)
             {
@@ -96,7 +96,6 @@ namespace Habilidades.Implementacion
             _estado = Estado.Disponible;
             _coroutineCD = null;
         }
-
 
         public int TiempoRestanteCD()
         {

@@ -12,7 +12,6 @@ namespace Portador.Implementaciones
         private Regeneracion _tipoRegenMana;
         private TipoCosto tipoCosto;
 
-
         public PortadorJugable()
         {
             TipoRegenMana = Regeneracion.PorContacto;
@@ -38,13 +37,11 @@ namespace Portador.Implementaciones
             private set => _estadistCambiadasEvent = value;
         }
 
-
         public Regeneracion TipoRegenMana
         {
             get => _tipoRegenMana;
             private set => _tipoRegenMana = value;
         }
-
 
         public int Mana
         {
@@ -61,8 +58,5 @@ namespace Portador.Implementaciones
         {
             Mana -= Mathf.Clamp(puntosMana, 0, 100);
         }
-
-
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Portador.Implementaciones;
 using UnityEngine;
+using Portador.Enum;
 
 namespace Habilidades.Implementacion
 {

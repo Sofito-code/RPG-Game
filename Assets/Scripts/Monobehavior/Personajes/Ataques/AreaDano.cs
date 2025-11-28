@@ -1,8 +1,7 @@
-﻿using Monobehavior;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Monobehavior
+namespace Monobehavior.Personajes.Ataques
 {
     public class AreaDano : MonoBehaviour
     {
@@ -27,7 +26,6 @@ namespace Assets.Scripts.Monobehavior
                 }
             }
         }
-
         private IEnumerator HacerDano(Collider other)
         {
             if (danoCoroutine != null) yield break;
@@ -36,7 +34,6 @@ namespace Assets.Scripts.Monobehavior
             yield return new WaitForSeconds(2f);
             danoCoroutine = null;
         }
-
         private IEnumerator IniciarTiempoAtaque()
         {
             yield return new WaitForSeconds(TiempoDeAtaque);

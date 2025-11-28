@@ -1,6 +1,5 @@
 ﻿namespace Habilidades.Enum
-{
-    public enum Estado
+{    public enum Estado
     {
         Disponible,
         EnEspera

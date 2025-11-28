@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.Monobehavior;
-using Monobehavior;
+﻿using Monobehavior.Personajes.Ataques;
 using Portador.Implementaciones;
-using System.Collections;
 using UnityEngine;
 
 namespace Habilidades.Implementacion

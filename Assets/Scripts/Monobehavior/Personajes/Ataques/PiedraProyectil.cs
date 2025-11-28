@@ -2,44 +2,49 @@
 using System.Collections;
 using UnityEngine;
 
-public class PiedraProyectil : MonoBehaviour
+namespace Monobehavior.Personajes.Ataques
 {
-    [SerializeField] private int puntosDano = 4;
-    private Coroutine tiempoCoroutine;
-    int tiempoDestruccion = 5;
-    private Rigidbody rb;
-    public Rigidbody RBody { get => rb;}
-    public int Dano { get => puntosDano; set => puntosDano = value; }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    public class PiedraProyectil : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private int puntosDano = 4;
+        private Coroutine tiempoCoroutine;
+        int tiempoDestruccion = 5;
+        private Rigidbody rb;
+        public Rigidbody RBody { get => rb; }
+        public int Dano { get => puntosDano; set => puntosDano = value; }
 
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject other = collision.gameObject;
-        if (other.CompareTag("Enemigo") && other.GetComponent<ControladorPNJ>().NPC.Vida != 0)
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Awake()
         {
-            HacerDano(other);
+            rb = GetComponent<Rigidbody>();
         }
-        tiempoCoroutine = StartCoroutine(IniciarTiempoDestruccion());
+
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            GameObject other = collision.gameObject;
+            if (other.CompareTag("Enemigo") && other.GetComponent<ControladorPNJ>().NPC.Vida != 0)
+            {
+                HacerDano(other);
+            }
+            tiempoCoroutine = StartCoroutine(IniciarTiempoDestruccion());
+        }
+
+
+        private void HacerDano(GameObject other)
+        {
+            other.GetComponent<ControladorPNJ>().NPC.RecibirDano(puntosDano);
+            Debug.Log("Vida NPC despues de daño por proyectil: " + other.GetComponent<ControladorPNJ>().NPC.Vida);
+        }
+
+        private IEnumerator IniciarTiempoDestruccion()
+        {
+            yield return new WaitForSeconds(tiempoDestruccion);
+            Destroy(gameObject);
+        }
+
+
     }
-
-
-    private void HacerDano(GameObject other)
-    {
-        other.GetComponent<ControladorPNJ>().NPC.RecibirDano(puntosDano);
-        Debug.Log("Vida NPC despues de daño por proyectil: " + other.GetComponent<ControladorPNJ>().NPC.Vida);
-    }
-
-    private IEnumerator IniciarTiempoDestruccion()
-    {
-        yield return new WaitForSeconds(tiempoDestruccion);
-        Destroy(gameObject);
-    }
-
-
 }
+
+

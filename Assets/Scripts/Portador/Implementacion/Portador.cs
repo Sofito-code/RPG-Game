@@ -1,11 +1,9 @@
 ﻿using Portador.Enum;
 using Portador.Interfaces;
-using System;
 using UnityEngine;
 
 namespace Portador.Implementaciones
 {
-    
     public abstract class Portador : IDanable
     {
         private string _nombre;
@@ -48,8 +46,8 @@ namespace Portador.Implementaciones
                     _nombre = value;
                 }
             }
-        } 
-        
+        }
+
         public void RecibirDano(int puntosDano)
         {
             Vida -= Mathf.Clamp(puntosDano, 0, 100);

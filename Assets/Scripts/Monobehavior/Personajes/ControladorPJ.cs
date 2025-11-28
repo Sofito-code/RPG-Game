@@ -3,8 +3,9 @@ using Habilidades.Implementacion;
 using Habilidades.Enum;
 using Portador.Implementaciones;
 using UnityEngine;
+using Portador.Enum;
 
-namespace Monobehavior
+namespace Monobehavior.Personajes
 {
     public class ControladorPJ : MonoBehaviour
     {
@@ -15,7 +16,7 @@ namespace Monobehavior
         [SerializeField] private Habilidad habilidad3;
         [SerializeField] private Transform _refDañoArea;
         [SerializeField] private Transform _refProyectil;
-        [SerializeField]private TMPro.TextMeshProUGUI _textoAdvertencia;
+        [SerializeField] private TMPro.TextMeshProUGUI _textoAdvertencia;
         private GameObject _meshPersonaje;
 
         void Awake()
@@ -76,7 +77,7 @@ namespace Monobehavior
                         Debug.Log("No tienes suficiente Vida");
                         _textoAdvertencia.text = "No tienes suficiente vida";
                     }
-                        break;
+                    break;
                 case TipoCosto.Mana:
                     if (_agente.Mana >= hab.PuntosReq)
                     {

@@ -1,6 +1,4 @@
-﻿using Portador.Enum;
-
-namespace Portador.Implementaciones
+﻿namespace Portador.Implementaciones
 {
     public class PortadorNoJugable : Portador
     {
